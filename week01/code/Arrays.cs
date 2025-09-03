@@ -9,12 +9,21 @@ public static class Arrays
     public static double[] MultiplesOf(double number, int length)
     {
         // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // step 1: make an array with size = length
+        // step 2: loop from 0 up to length-1
+        // step 3: at each index, put number * (i+1)
+        // step 4: return the array
 
-        return []; // replace this return statement with your own
+        double[] result = new double[length];
+
+        for (int i = 0; i < length; i++)
+        {
+            result[i] = number * (i + 1);
+        }
+
+        return result;
     }
+
 
     /// <summary>
     /// Rotate the 'data' to the right by the 'amount'.  For example, if the data is 
@@ -26,8 +35,28 @@ public static class Arrays
     public static void RotateListRight(List<int> data, int amount)
     {
         // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // step 1: if list is empty or only 1 item, do nothing
+        // step 2: make sure amount isn’t bigger than list size (use %)
+        // step 3: take the last "amount" numbers
+        // step 4: remove them from the end
+        // step 5: stick them in front
+        // step 6: done
+
+        if (data == null || data.Count <= 1)
+        {
+            return;
+        }
+
+        amount = amount % data.Count;
+
+        if (amount == 0)
+        {
+            return;
+        }
+
+        int startIndex = data.Count - amount;
+        List<int> tail = data.GetRange(startIndex, amount);
+        data.RemoveRange(startIndex, amount);
+        data.InsertRange(0, tail);
     }
 }
